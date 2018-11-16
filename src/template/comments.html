@@ -1,0 +1,19 @@
+
+{% if comments %}
+
+{% for comment in comments %}
+<div class="media" style="border: 1px solid rgba(50,50,50,0.3); margin-bottom: 0.5em">
+    <img class="mr-3" src="https://via.placeholder.com/90" alt="Generic placeholder image">
+    <div class="media-body">
+        <h5 class="mt-0">{{ comment.autor}} <small style="color: rgba(50,50,50,.5)">hace {{ post.timestamp|timesince}}</small></h5>
+        <div>{{ comment.content}}</div>
+    </div>
+</div>
+{% endfor %}
+
+{% else %}
+
+<h5 style="margin:0 0 2em 0">Esta publicación no tiene comentarios</h5>
+
+{% endif %}
+

@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+
+{% block content %}
+
+<div class="row" style="margin: 2rem 0 2rem 0;">
+    <div class="col-md-8 offset-md-2">
+        {% include "messagesuccess.html" %}
+        <h1>Publicaciones</h1>
+
+        {% if object_list %}
+
+        {% for post in object_list %}
+        <div class="card">
+            <img class="card-img-top" src="https://via.placeholder.com/150" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ post.get_absolute_url }}">{{ post.title}}</a>
+                    <small style="color: rgba(50,50,50,.5)">hace {{ post.timestamp|timesince}}</small>
+                </h5>
+                <p class="card-text">{{post.content|linebreaks|truncatechars:120}}</p>
+                <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Ver</a>
+            </div>
+        </div>
+
+
+        <p></p>
+        {% endfor %}
+
+        {% else %}
+        <h4 style="margin-top: 1em;">No hay publicaciones aún</h4>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
+
+{%block paginate %}
+{% include "pagination.html" %}
+{% endblock %}
+
+
+
+

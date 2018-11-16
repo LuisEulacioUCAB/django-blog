@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="row" style="margin: 2em 0 2em 0">
+    <div class="col-md-8 offset-md-2">
+        <h2>¿Seguro que desea eliminar la publicación de {{ object.autor}} ?</h2>
+        <div class="card">
+            <img class="card-img-top" src="https://via.placeholder.com/100" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title}}
+                    <small style="color: rgba(50,50,50,.5)">hace {{ post.timestamp|timesince}}</small>
+                </h5>
+                <p class="card-text">{{post.content|linebreaks|truncatechars:120}}</p>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <a class="btn btn-danger" href="{% url 'post-detail' pk=object.id %}">Cancelar</a>
+                    <input class="btn btn-success" type="submit" value="Confirmar">
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

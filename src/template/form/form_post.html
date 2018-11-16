@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="row" style="margin: 2em 0 2em 0">
+    <div class="col-md-8 offset-md-2">
+        <h1>Crear publicación</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag}}
+                {{ field }}
+            </div>
+
+            {%endfor %}
+            {% if object.update %}
+            <a class="btn btn-danger" href="{% url 'post-detail' pk=object.id %}" value="Modificar">Cancelar</a>
+            <input class="btn btn-warning"  type="submit" value="Modificar">
+            {% else %}
+            <input class="btn btn-primary"  type="submit" value="Agregar">
+            {% endif %}
+
+
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
