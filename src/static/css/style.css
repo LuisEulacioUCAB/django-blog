@@ -1,0 +1,57 @@
+.user_invalid {
+    border: 2px solid red;
+}
+
+.user_valid {
+    border: 2px solid green;
+
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    box-shadow: none;
+    border-color: initial;
+}
+
+.nav-custom {
+    height: 100%;
+
+}
+
+.navbar-custom-top {
+    background-color: #ffffff;
+    box-shadow: 0px -2px 4px 5px rgba(50, 50, 50, 0.4);
+    height: 80px;
+    text-transform: uppercase;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+.custom-header-form {
+    margin: 4em 0 0 0;
+    border-left: 1px solid rgba(50, 50, 50, 0.3);
+    border-right: 1px solid rgba(50, 50, 50, 0.3);
+    padding: 1em;
+    border-top: 1px solid rgba(50, 50, 50, 0.3);
+    border-radius: 1em 1em 0 0;
+    text-align: center;
+}
+
+.form-custom {
+    font-family: Arial;
+    border-bottom: 1px solid rgba(50, 50, 50, 0.3);
+    border-left: 1px solid rgba(50, 50, 50, 0.3);
+    border-right: 1px solid rgba(50, 50, 50, 0.3);
+    padding: 2em;
+    border-radius: 0 0 1em 1em;
+}
+
+label {
+    font-family: Arial;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+ul.errorlist {
+    list-style: none;
+    padding: 0;
+}

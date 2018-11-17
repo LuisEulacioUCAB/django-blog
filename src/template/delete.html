@@ -4,7 +4,9 @@
     <div class="col-md-8 offset-md-2">
         <h2>¿Seguro que desea eliminar la publicación de {{ object.autor}} ?</h2>
         <div class="card">
-            <img class="card-img-top" src="https://via.placeholder.com/100" alt="Card image cap">
+            {% if post.image %}
+            <img class="card-img-top" src="{{ post.image.url}}" alt="Card image cap">
+            {% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ post.title}}
                     <small style="color: rgba(50,50,50,.5)">hace {{ post.timestamp|timesince}}</small>

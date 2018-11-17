@@ -66,7 +66,7 @@ $(document).ready(function () {
                 for (i = 0; i < data.length; i++) {
                     media = `<div class="media" style="border: 1px solid rgba(50,50,50,0.3); margin-bottom: 0.5em">\n
                     <img class="mr-3" src="https://via.placeholder.com/90" alt="Generic placeholder image"><div class="media-body">`;
-                    media += `<h5 class="mt-0">${data[i]['fields']['autor']} <small style="color: rgba(50,50,50,.5)">hace ${data[i]['fields']['timestamp']}</small></h5>`;
+                    media += `<h5 class="mt-0">${data[i]['fields']['username']} <small style="color: rgba(50,50,50,.5)">hace ${data[i]['fields']['timestamp']}</small></h5>`;
                     media += `<div>${data[i]['fields']['content']}</div></div></div>`;
                     html += media
                 }

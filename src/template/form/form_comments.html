@@ -1,9 +1,6 @@
 <form action="" method="post" data-url-create-comment="{% url 'create-comment' %}">
     {% csrf_token %}
-    <div class="form-group">
-        <label for="autor">Autor:</label>
-        <input id="autor" class="form-control " type="text" name="autor" required>
-    </div>
+    <input id="autor" class="form-control " type="hidden" name="autor" value="{{ user.id}}">
 
     <input type="hidden" value="{{object.id}}" name="id">
     <div class="form-group">

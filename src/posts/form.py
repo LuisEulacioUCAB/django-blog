@@ -5,13 +5,16 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = [
-            "autor",
             "title",
-            "content"
+            "content",
+            "image"
         ]
         widgets={
-            "autor": forms.TextInput(attrs={'class': 'form-control'}),
-            'content': forms.Textarea(attrs={'class':'form-control'}),
-            "title": forms.TextInput(attrs={'class':'form-control'})
+            'content': forms.Textarea(attrs={'class':'form-control','required':'true'}),
+            "title": forms.TextInput(attrs={'class':'form-control','required':'true'}),
+            "image": forms.FileInput(attrs={'class':'form-control','required':'true'})
         }
+
+
+
 

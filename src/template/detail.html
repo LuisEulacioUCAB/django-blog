@@ -5,14 +5,17 @@
     <div class="row" style="margin: 2em 0 2em 0">
         <div class="col-md-8 offset-md-2">
         <div class="card">
-            <img class="card-img-top" src="https://via.placeholder.com/100" alt="Card image cap">
+            {% if post.image %}
+            <img class="card-img-top" src="{{ post.image.url}}" alt="Card image cap">
+                        {% endif %}
+
             <div class="card-body">
                 <h5 class="card-title">{{ post.title}} <small style="color: rgba(50,50,50,.5)">hace {{ post.timestamp|timesince}}</small></h5>
                 <p class="card-text">{{post.content|linebreaks|truncatechars:120}}</p>
                 <a href="{% url 'post-update' pk=object.id %}" class="btn btn-warning">Modificar</a>
                 <a href="{% url 'post-delete' pk=object.id %}" class="btn btn-danger">Eliminar</a>
-            </div>
 
+            </div>
         </div>
 
             <h1 style="margin-top: 0.5em">Comentarios</h1>

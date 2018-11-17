@@ -1,15 +1,17 @@
 from django.urls import reverse, reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from django.http import JsonResponse,HttpResponse
+from django.http import JsonResponse,HttpResponse, HttpResponseRedirect
 from django.core import serializers
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from posts.models import Post, Comment
 from .form import PostForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-
-class Index(ListView):
+class Index(LoginRequiredMixin, ListView):
+    login_url = '/user/'
+    redirect_field_name = ''
     template_name = "index.html"
     model = Post
     context_object_name = 'posts'
@@ -31,7 +33,9 @@ class CreatePost(SuccessMessageMixin ,CreateView):
         )
 
 
-class DetailPost( DetailView):
+class DetailPost(LoginRequiredMixin, DetailView):
+    login_url = '/user/'
+    redirect_field_name = ''
     template_name = "detail.html"
     model = Post
 
@@ -43,7 +47,9 @@ class DetailPost( DetailView):
         return context
 
 
-class UpdatePost(SuccessMessageMixin, UpdateView):
+class UpdatePost(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    login_url = '/user/'
+    redirect_field_name = ''
     template_name = "form/form_post.html"
     model = Post
     form_class = PostForm
@@ -57,7 +63,9 @@ class UpdatePost(SuccessMessageMixin, UpdateView):
         return context
 
 
-class DeletePost(SuccessMessageMixin, DeleteView):
+class DeletePost(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+    login_url = '/user/'
+    redirect_field_name = ''
     model = Post
     template_name = 'delete.html'
     success_message = "%(title)s  fue eliminado correctamente"
@@ -66,7 +74,6 @@ class DeletePost(SuccessMessageMixin, DeleteView):
 
     def delete(self, request, *args, **kwargs):
         obj = self.get_object()
-        print(obj)
         messages.success(request, self.success_message % dict(title = obj))
         return super(DeletePost, self).delete(request, *args, **kwargs)
 
@@ -77,7 +84,7 @@ def create_comment(request):
         content = str(data.get('content'))
         id = data.get('id')
         post = Post.objects.get(id=id)
-        Comment.objects.create(autor=autor , content= content, post = post)
+        Comment.objects.create(autor=request.user.username , content= content, post = post)
         comments = serializers.serialize('json',Comment.objects.filter(post=id))
     return HttpResponse(comments)
 

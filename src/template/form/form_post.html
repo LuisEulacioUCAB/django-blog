@@ -1,10 +1,15 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
+
 <div class="row" style="margin: 2em 0 2em 0">
-    <div class="col-md-8 offset-md-2">
-        <h1>Crear publicación</h1>
-        <form action="" method="post">
+    <div class="col-md-6 offset-md-3">
+        <div class="custom-header-form">
+            <h1>Crear publicación</h1>
+        </div>
+
+        <form action="" class="form-custom" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="autor" value="{{ user.id }}">
             {% csrf_token %}
             {% for field in form %}
             <div class="form-group">

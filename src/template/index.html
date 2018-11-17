@@ -12,7 +12,9 @@
 
         {% for post in object_list %}
         <div class="card">
-            <img class="card-img-top" src="https://via.placeholder.com/150" alt="Card image cap">
+            {% if post.image %}
+            <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap">
+            {% endif %}
             <div class="card-body">
                 <h5 class="card-title"><a href="{{ post.get_absolute_url }}">{{ post.title}}</a>
                     <small style="color: rgba(50,50,50,.5)">hace {{ post.timestamp|timesince}}</small>
