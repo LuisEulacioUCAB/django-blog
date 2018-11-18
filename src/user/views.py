@@ -15,7 +15,7 @@ class RegisterUser(SuccessMessageMixin, CreateView):
     model = Profile
     form_class = RegisterForm
     success_url = reverse_lazy('register')
-    success_message = "%(username)s el usuario se ha registrado correctamente"
+    success_message = "El usuario %(username)s  se ha registrado correctamente"
 
 
     def get_success_message(self, cleaned_data):
@@ -23,6 +23,12 @@ class RegisterUser(SuccessMessageMixin, CreateView):
             cleaned_data,
             username=self.object.username,
         )
+
+    def form_valid(self, form ):
+        user = form.save(commit=False)
+        user.set_password(form.cleaned_data['password'])
+        user.save()
+        return super().form_valid(form)
 
 
 def valid_username(request):
